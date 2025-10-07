@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-1 APSVC Invoice</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="branding">
+        <img src="logo.png" alt="A-1 APSVC Logo" class="logo" />
+        <h2>A-1 Affordable Plumbing Services</h2>
+        <p>Professional Invoice</p>
+    </header>
+
+    <div class="container">
+        <h1>A-1 APSVC Invoice</h1>
+
+        <!-- Company Info -->
+        <div class="company-info">
+            <h2>A-1 Affordable Plumbing Services</h2>
+            <p>320 McMillen Rd, Lucas, TX 75002</p>
+            <p>Office: (469) 900-5194 | Email: johnniesue@a-1apsvc.com</p>
+            <p>Chris Crabtree: (469) 491-9171 | Email: chriscrabtree@a-1apsvc.com</p>
+            <p>Website: <a href="https://a-1affordableplumbingservices.com">a-1affordableplumbingservices.com</a></p>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="customer-section">
+            <h3>Bill To:</h3>
+            <input type="text" id="customerName" placeholder="Customer Name">
+            <input type="text" id="customerAddress" placeholder="Address">
+            <input type="text" id="customerPhone" placeholder="Phone">
+            <input type="email" id="customerEmail" placeholder="Email">
+        </div>
+
+        <!-- Invoice Details -->
+        <div class="invoice-details">
+            <label>Invoice #: <input type="text" id="invoiceNumber" value="INV-001"></label>
+            <label>Date: <input type="date" id="invoiceDate"></label>
+            <label>Due Date: <input type="date" id="dueDate"></label>
+            <label>Terms: <select id="terms">
+                <option value="Upon Receipt">Upon Receipt</option>
+                <option value="Net 15">Net 15</option>
+                <option value="Net 30">Net 30</option>
+            </select></label>
+        </div>
+
+        <!-- Job Information -->
+        <div class="job-section">
+            <h3>Job Information</h3>
+            <label>Summary of Work:</label>
+            <textarea id="summaryOfWork" placeholder="Summary of work performed..." rows="3"></textarea>
+            
+            <label>Tech Status:</label>
+            <select id="techStatus">
+                <option value="assigned">Assigned</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+
+            <label>Estimated Total:</label>
+            <input type="number" id="estimatedTotal" placeholder="0.00" step="0.01">
+
+            <label>Lead Source:</label>
+            <select id="leadSource">
+                <option value="">Select Lead Source</option>
+                <option value="referral">Referral</option>
+                <option value="google">Google</option>
+                <option value="facebook">Facebook</option>
+                <option value="repeat_customer">Repeat Customer</option>
+            </select>
+
+            <label>Job Tags:</label>
+            <input type="text" id="jobTags" placeholder="Tags (comma-separated)">
+
+            <div class="job-fields">
+                <div>
+                    <label>Lockbox Code:</label>
+                    <input type="text" id="lockboxCode" placeholder="Lockbox Code">
+                </div>
+                <div>
+                    <label>Urgency Level:</label>
+                    <select id="urgencyLevel">
+                        <option value="">Select Urgency</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Items -->
+        <div class="line-items">
+            <h3>Services/Items</h3>
+            <table id="line-items">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="description" placeholder="Service description"></td>
+                        <td><input type="number" class="quantity" value="1" min="1"></td>
+                        <td><input type="number" class="unit-price" placeholder="0.00" step="0.01"></td>
+                        <td class="line-total">$0.00</td>
+                        <td><button type="button" class="remove-row">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" id="add-row">Add Item</button>
+        </div>
+
+        <!-- Checklist Builder -->
+        <div class="checklist-section">
+            <h3>Job Checklist</h3>
+            <div id="checklist">
+                <div class="checklist-item">
+                    <input type="text" class="checklist-input" placeholder="Checklist item">
+                    <input type="checkbox" class="checklist-completed">
+                    <label>Completed</label>
+                    <button type="button" class="remove-checklist">Remove</button>
+                </div>
+            </div>
+            <button type="button" id="addChecklistItem">Add Checklist Item</button>
+        </div>
+
+        <!-- Private Notes -->
+        <div class="notes-section">
+            <h3>Private Notes</h3>
+            <textarea id="privateNotes" placeholder="Internal notes (not shown to customer)" rows="4"></textarea>
+        </div>
+
+        <!-- Totals -->
+        <div class="totals">
+            <div class="totals-row">
+                <label>Subtotal: <span id="subtotal">$0.00</span></label>
+            </div>
+            <div class="totals-row">
+                <label>Tax (%): <input type="number" id="tax" value="8.25" step="0.01"></label>
+                <span id="taxAmount">$0.00</span>
+            </div>
+            <div class="totals-row">
+                <label>Discount ($): <input type="number" id="discount" value="0" step="0.01"></label>
+            </div>
+            <div class="totals-row total">
+                <label>Total: <span id="total">$0.00</span></label>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button type="button" id="saveInvoice">Save Invoice</button>
+            <button type="button" id="printInvoice">Print Invoice</button>
+            <button type="button" id="emailInvoice">Email Invoice</button>
+            <button type="button" id="exportData">Export Data</button>
+        </div>
+    </div>
+    <script src="invoice-builder.js"></script>
+</body>
+</html>
