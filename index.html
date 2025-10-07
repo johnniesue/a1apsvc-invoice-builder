@@ -9,7 +9,79 @@
 <body>
     <div class="container">
         <h1>A-1 APSVC Invoice Builder</h1>
-        <!-- Invoice form will go here -->
+        
+        <!-- Company Info -->
+        <div class="company-info">
+            <h2>A-1 Affordable Plumbing Services</h2>
+            <p>123 Main St, Dallas, TX 75201</p>
+            <p>Phone: (214) 555-0123 | Email: info@a-1apsvc.com</p>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="customer-section">
+            <h3>Bill To:</h3>
+            <input type="text" id="customerName" placeholder="Customer Name">
+            <input type="text" id="customerAddress" placeholder="Address">
+            <input type="text" id="customerPhone" placeholder="Phone">
+            <input type="email" id="customerEmail" placeholder="Email">
+        </div>
+
+        <!-- Invoice Details -->
+        <div class="invoice-details">
+            <label>Invoice #: <input type="text" id="invoiceNumber" value="INV-001"></label>
+            <label>Date: <input type="date" id="invoiceDate"></label>
+            <label>Due Date: <input type="date" id="dueDate"></label>
+        </div>
+
+        <!-- Line Items -->
+        <div class="line-items">
+            <h3>Services/Items</h3>
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody">
+                    <tr>
+                        <td><input type="text" class="item-desc" placeholder="Service description"></td>
+                        <td><input type="number" class="item-qty" value="1" min="1"></td>
+                        <td><input type="number" class="item-rate" placeholder="0.00" step="0.01"></td>
+                        <td class="item-amount">.00</td>
+                        <td><button type="button" class="remove-item">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" id="addItem">Add Item</button>
+        </div>
+
+        <!-- Totals -->
+        <div class="totals">
+            <div class="totals-row">
+                <label>Subtotal: <span id="subtotal">.00</span></label>
+            </div>
+            <div class="totals-row">
+                <label>Tax (%): <input type="number" id="taxRate" value="8.25" step="0.01"></label>
+                <span id="taxAmount">.00</span>
+            </div>
+            <div class="totals-row">
+                <label>Discount ($): <input type="number" id="discount" value="0" step="0.01"></label>
+            </div>
+            <div class="totals-row total">
+                <label>Total: <span id="total">.00</span></label>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button type="button" id="saveInvoice">Save Invoice</button>
+            <button type="button" id="printInvoice">Print Invoice</button>
+            <button type="button" id="emailInvoice">Email Invoice</button>
+        </div>
     </div>
     <script src="invoice-builder.js"></script>
 </body>
