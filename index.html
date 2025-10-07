@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-1 APSVC Invoice Builder</title>
+    <title>A-1 APSVC Invoice Builder Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>A-1 APSVC Invoice Builder</h1>
+        <h1>A-1 APSVC Invoice Builder Pro</h1>
         
         <!-- Company Info -->
         <div class="company-info">
@@ -31,6 +31,57 @@
             <label>Invoice #: <input type="text" id="invoiceNumber" value="INV-001"></label>
             <label>Date: <input type="date" id="invoiceDate"></label>
             <label>Due Date: <input type="date" id="dueDate"></label>
+        </div>
+
+        <!-- Job Information -->
+        <div class="job-section">
+            <h3>Job Information</h3>
+            
+            <!-- Summary of Work -->
+            <label>Summary of Work:</label>
+            <textarea id="summaryOfWork" placeholder="Summary of work performed..." rows="3"></textarea>
+            
+            <!-- Field Tech Status -->
+            <label>Tech Status:</label>
+            <select id="techStatus">
+                <option value="assigned">Assigned</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+
+            <!-- Estimate Total -->
+            <label>Estimated Total:</label>
+            <input type="number" id="estimatedTotal" placeholder="0.00" step="0.01">
+
+            <!-- Lead Source -->
+            <label>Lead Source:</label>
+            <select id="leadSource">
+                <option value="">Select Lead Source</option>
+                <option value="referral">Referral</option>
+                <option value="google">Google</option>
+                <option value="flyer">Flyer</option>
+                <option value="facebook">Facebook</option>
+                <option value="repeat_customer">Repeat Customer</option>
+            </select>
+
+            <!-- Job Tags -->
+            <label>Job Tags:</label>
+            <input type="text" id="jobTags" placeholder="Tags (comma-separated)">
+
+            <!-- Job Fields -->
+            <div class="job-fields">
+                <label>Lockbox Code:</label>
+                <input type="text" id="lockboxCode" placeholder="Lockbox Code">
+                
+                <label>Urgency Level:</label>
+                <select id="urgencyLevel">
+                    <option value="">Select Urgency</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+            </div>
         </div>
 
         <!-- Line Items -->
@@ -59,6 +110,26 @@
             <button type="button" id="addItem">Add Item</button>
         </div>
 
+        <!-- Checklist Builder -->
+        <div class="checklist-section">
+            <h3>Job Checklist</h3>
+            <div id="checklist">
+                <div class="checklist-item">
+                    <input type="text" class="checklist-input" placeholder="Checklist item">
+                    <input type="checkbox" class="checklist-completed">
+                    <label>Completed</label>
+                    <button type="button" class="remove-checklist">Remove</button>
+                </div>
+            </div>
+            <button type="button" id="addChecklistItem">Add Checklist Item</button>
+        </div>
+
+        <!-- Private Notes -->
+        <div class="notes-section">
+            <h3>Private Notes</h3>
+            <textarea id="privateNotes" placeholder="Internal notes (not shown to customer)" rows="4"></textarea>
+        </div>
+
         <!-- Totals -->
         <div class="totals">
             <div class="totals-row">
@@ -81,6 +152,7 @@
             <button type="button" id="saveInvoice">Save Invoice</button>
             <button type="button" id="printInvoice">Print Invoice</button>
             <button type="button" id="emailInvoice">Email Invoice</button>
+            <button type="button" id="exportData">Export Data</button>
         </div>
     </div>
     <script src="invoice-builder.js"></script>
